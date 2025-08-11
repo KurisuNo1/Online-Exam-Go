@@ -1,0 +1,1 @@
+docker run -p 1016:1016 -d gowebv2

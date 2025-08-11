@@ -1,0 +1,69 @@
+version: '3'
+
+services:
+  docker_go:
+    build: .
+    #image: gowebv3
+    ports:
+      - 1016:1016
+    depends_on:
+      - db
+    links:
+      - db
+    restart: always
+  db:
+    image: mysql:8.0.18
+    container_name: go_mysql_db # 指定名字
+    ports:
+      - 13307:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_USER: 'makise'
+      MYSQL_PASSWORD: 'root'
+      MYSQL_DATABASE: 'exam'
+    command: "--default-authentication-plugin=mysql_native_password "
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#    command:
+#      # 将mysql8.0默认密码策略 修改为 原先 策略 (mysql8.0对其默认策略做了更改 会导致密码无法匹配)
+#      --default-authentication-plugin=mysql_native_password
+#      --character-set-server=utf8mb4
+#      --collation-server=utf8mb4_general_ci
+#      --explicit_defaults_for_timestamp=true
+#      --lower_case_table_names=1
+#    volumes:
+#      - ./mysql/data:/var/lib/mysql
+#      - ./mysql/conf:/etc/mysql/conf.d
+#      - ./mysql/logs:/log
+#      #      - ./mysql/init/:/docker-entrypoint-initdb.d/ 如果多个初始化文件的话建议直接这样，全部放在init文件夹下
+#      - ./beego.sql:/docker-entrypoint-initdb.d/exam.sql
+
